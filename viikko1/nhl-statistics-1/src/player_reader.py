@@ -1,6 +1,7 @@
 from urllib import request
 from player import Player
 
+
 class PlayerReader:
     def __init__(self):
         self._url = "https://studies.cs.helsinki.fi/nhlstats/2021-22/players.txt"
