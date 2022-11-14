@@ -25,8 +25,12 @@ def main():
             players.append(player)
 
     print("Oliot:")
-
-    for player in players:
+    players_sorted = sorted(
+        players,
+        key=lambda player: player.points,
+        reverse=True
+    )
+    for player in players_sorted:
         print(player)
 
 

@@ -16,6 +16,12 @@ class Player:
         self.penalties = penalties
         self.team = team
         self.games = games
+        self.points = self.get_points()
+
+    def get_points(self):
+        return self.goals + self.assists
 
     def __str__(self):
-        return f"{self.name} {self.assists} {self.goals} {self.penalties} {self.team} {self.games}"
+        def format_number(number):
+            return str(number).rjust(2)
+        return f"{self.name:22} {self.team} {format_number(self.goals)} + {format_number(self.assists)} = {format_number(self.points)}"
