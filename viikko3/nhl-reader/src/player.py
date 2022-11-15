@@ -24,4 +24,9 @@ class Player:
     def __str__(self):
         def format_number(number):
             return str(number).rjust(2)
-        return f"{self.name:22} {self.team} {format_number(self.goals)} + {format_number(self.assists)} = {format_number(self.points)}"
+        return (
+            f"{self.name:22} {self.team} "
+            f"{format_number(self.goals)} "
+            f"+ {format_number(self.assists)} "
+            f"= {format_number(self.points)}"
+        )

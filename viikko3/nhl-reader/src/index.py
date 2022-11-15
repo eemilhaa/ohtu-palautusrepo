@@ -1,36 +1,14 @@
-import requests
-from player import Player
+from player_reader import PlayerReader
+from player_stats import PlayerStats
 
 
 def main():
     url = "https://studies.cs.helsinki.fi/nhlstats/2021-22/players"
-    response = requests.get(url).json()
+    reader = PlayerReader(url)
+    stats = PlayerStats(reader)
+    players = stats.top_scorers_by_nationality("FIN")
 
-    print("JSON-muotoinen vastaus:")
-    print(response)
-
-    players = []
-
-    for player_dict in response:
-        player = Player(
-            player_dict["name"],
-            player_dict["nationality"],
-            player_dict["assists"],
-            player_dict["goals"],
-            player_dict["penalties"],
-            player_dict["team"],
-            player_dict["games"],
-        )
-        if player.nationality == "FIN":
-            players.append(player)
-
-    print("Oliot:")
-    players_sorted = sorted(
-        players,
-        key=lambda player: player.points,
-        reverse=True
-    )
-    for player in players_sorted:
+    for player in players:
         print(player)
 
 
