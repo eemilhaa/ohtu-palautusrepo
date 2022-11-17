@@ -44,6 +44,8 @@ class UserService:
             raise UserInputError("Username should only contain letters")
         if len(username) < 3:
             raise UserInputError("Username must be at least 3 letters long")
+        if self._user_repository.find_by_username(username):
+            raise UserInputError("Username already taken")
 
     def _validate_password(self, password):
         if password.isalpha():
