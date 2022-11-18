@@ -35,11 +35,43 @@ Register With Nonmatching Password And Password Confirmation
     Set Password  12345678
     Set Password Confirmation  01234567
     Submit Credentials
-	Registration Should Fail With Message  Password confirmation does not match
+    Registration Should Fail With Message  Password confirmation does not match
+
+Login After Successful Registration
+    Click Link  Register new user
+    Set Username  uolevi
+    Set Password  12345678
+    Set Password Confirmation  12345678
+    Submit Credentials
+    Go To Login Page
+    Set Username  uolevi
+    Set Password  12345678
+    Click Button  Login
+    Login Should Succeed
+
+Login After Failed Registration
+    Click Link  Register new user
+    Set Username  asdf
+    Set Password  12345678
+    Set Password Confirmation  asdf
+    Submit Credentials
+    Go To Login Page
+    Set Username  asdf
+    Set Password  12345678
+    Click Button  Login
+    Login Should Fail With Message  Invalid username or password
 
 *** Keywords ***
 Registration Should Succeed
     Page Should Contain  Welcome to Ohtu Application!
+
+Login Should Fail With Message
+    [Arguments]  ${message}
+    Login Page Should Be Open
+    Page Should Contain  ${message}
+
+Login Should Succeed
+    Main Page Should Be Open
 
 Registration Should Fail With Message
     [Arguments]  ${message}
