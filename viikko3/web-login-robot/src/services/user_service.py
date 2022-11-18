@@ -19,28 +19,39 @@ class UserService:
     def check_credentials(self, username, password):
         if not username or not password:
             raise UserInputError("Username and password are required")
-
         user = self._user_repository.find_by_username(username)
-
         if not user or user.password != password:
             raise AuthenticationError("Invalid username or password")
-
         return user
 
     def create_user(self, username, password, password_confirmation):
         self.validate(username, password, password_confirmation)
-
         user = self._user_repository.create(
             User(username, password)
         )
-
         return user
 
     def validate(self, username, password, password_confirmation):
         if not username or not password:
             raise UserInputError("Username and password are required")
+        self._validate_username(username)
+        self._validate_password(password, password_confirmation)
 
-        # toteuta loput tarkastukset tänne ja nosta virhe virhetilanteissa
+    def _validate_username(self, username):
+        if not username.isalpha():
+            raise UserInputError("Username should only contain letters")
+        if len(username) < 3:
+            raise UserInputError("Username must be at least 3 letters long")
+        if self._user_repository.find_by_username(username):
+            raise UserInputError("Username already taken")
+
+    def _validate_password(self, password, pasword_confirmation):
+        if password.isalpha():
+            raise UserInputError("Password cannot only contain letters")
+        if len(password) < 8:
+            raise UserInputError("Password must be at least 8 characters long")
+        if password != pasword_confirmation:
+            raise UserInputError("Password confirmation does not match")
 
 
 user_service = UserService()
