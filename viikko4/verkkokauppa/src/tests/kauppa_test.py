@@ -97,3 +97,13 @@ class TestKauppa(unittest.TestCase):
         self.kauppa.lisaa_koriin(3)
         self.kauppa.tilimaksu("pekka", "12345")
         self.assertEqual(self.viitegeneraattori_mock.uusi.call_count, 2)
+
+    def test_tilisiirto_kutsutaan_oikein_kun_tuote_poistettu_korista(self):
+        self.kauppa.aloita_asiointi()
+        self.kauppa.lisaa_koriin(3)
+        self.kauppa.lisaa_koriin(1)
+        self.kauppa.poista_korista(1)
+        self.kauppa.tilimaksu("pekka", "12345")
+        self.pankki_mock.tilisiirto.assert_called_with(
+            "pekka", 42, "12345", self.kauppa._kaupan_tili, 3
+        )
