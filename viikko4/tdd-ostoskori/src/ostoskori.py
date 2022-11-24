@@ -33,6 +33,7 @@ class Ostoskori:
         for ostos in self._ostokset:
             if poistettava.nimi() == ostos.tuotteen_nimi():
                 ostos.muuta_lukumaaraa(-1)
+        self._poista_tyhjat_ostokset()
 
     def tyhjenna(self):
         self._ostokset = []
@@ -45,3 +46,9 @@ class Ostoskori:
     def _lisaa_uusi_ostos(self, lisattava: Tuote):
         ostos = Ostos(lisattava)
         self._ostokset.append(ostos)
+
+    def _poista_tyhjat_ostokset(self):
+        ostokset = filter(
+            lambda ostos: ostos.lukumaara() > 0, self._ostokset
+        )
+        self._ostokset = list(ostokset)
