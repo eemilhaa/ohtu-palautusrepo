@@ -21,7 +21,6 @@ class TennisGame:
             self.score2 = self.score2 + 1
 
     def get_score(self):
-        output = ""
 
         if self.score1 == self.score2:
             if self.score1 < 4:
@@ -31,18 +30,19 @@ class TennisGame:
                 output = "Deuce"
 
         elif self.score1 >= 4 or self.score2 >= 4:
-            minus_result = self.score1 - self.score2
+            point_difference = self.score1 - self.score2
 
-            if minus_result == 1:
+            if point_difference == 1:
                 output = "Advantage player1"
-            elif minus_result == -1:
+            elif point_difference == -1:
                 output = "Advantage player2"
-            elif minus_result >= 2:
+            elif point_difference >= 2:
                 output = "Win for player1"
             else:
                 output = "Win for player2"
 
         else:
+            output = ""
             for i in range(1, 3):
                 if i == 1:
                     temp_score = self.score1
