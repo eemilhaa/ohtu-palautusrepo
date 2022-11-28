@@ -1,3 +1,12 @@
+POINT_CALLS = {
+    0: "Love",
+    1: "Fifteen",
+    2: "Thirty",
+    3: "Forty",
+    4: "Game",
+}
+
+
 class TennisGame:
     def __init__(self, player1_name, player2_name):
         self.player1 = player1_name
@@ -15,14 +24,9 @@ class TennisGame:
         output = ""
 
         if self.score1 == self.score2:
-            if self.score1 == 0:
-                output = "Love-All"
-            elif self.score1 == 1:
-                output = "Fifteen-All"
-            elif self.score1 == 2:
-                output = "Thirty-All"
-            elif self.score1 == 3:
-                output = "Forty-All"
+            if self.score1 < 4:
+                call = POINT_CALLS[self.score1]
+                output = f"{call}-All"
             else:
                 output = "Deuce"
 
