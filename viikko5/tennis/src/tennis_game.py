@@ -22,12 +22,8 @@ class TennisGame:
 
     def get_score(self):
 
-        if self.score1 == self.score2:
-            if self.score1 < 4:
-                call = POINT_CALLS[self.score1]
-                output = f"{call}-All"
-            else:
-                output = "Deuce"
+        if self._game_even():
+            output = self._get_even_score()
 
         elif self.score1 >= 4 or self.score2 >= 4:
             point_difference = self.score1 - self.score2
@@ -60,3 +56,13 @@ class TennisGame:
                     output = output + "Forty"
 
         return output
+
+    def _game_even(self):
+        return self.score1 == self.score2
+
+    def _get_even_score(self):
+        if self.score1 < 4:
+            call = POINT_CALLS[self.score1]
+            return f"{call}-All"
+        else:
+            return "Deuce"
