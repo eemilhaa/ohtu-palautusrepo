@@ -11,40 +11,34 @@ class TennisGame:
     def __init__(self, player1_name, player2_name):
         self.player1 = player1_name
         self.player2 = player2_name
-        self.score1 = 0
-        self.score2 = 0
+        self._points = {
+            self.player1: 0,
+            self.player2: 0,
+        }
 
     def won_point(self, player_name):
-        if player_name == "player1":
-            self.score1 = self.score1 + 1
-        else:
-            self.score2 = self.score2 + 1
+        self._points[player_name] += 1
 
     def get_score(self):
+        player1_points = self._get_points(self.player1)
+        player2_points = self._get_points(self.player2)
 
-        if self._game_even():
-            output = self._get_even_score()
+        if player1_points == player2_points:
+            output = self._get_even_score(player1_points)
 
-        elif self.score1 >= 4 or self.score2 >= 4:
-            point_difference = self.score1 - self.score2
-
-            if point_difference == 1:
-                output = "Advantage player1"
-            elif point_difference == -1:
-                output = "Advantage player2"
-            elif point_difference >= 2:
-                output = "Win for player1"
-            else:
-                output = "Win for player2"
+        elif max([player1_points, player2_points]) >= 4:
+            output = self._get_score_over_4_points(
+                player1_points, player2_points
+            )
 
         else:
             output = ""
             for i in range(1, 3):
                 if i == 1:
-                    temp_score = self.score1
+                    temp_score = player1_points
                 else:
                     output = output + "-"
-                    temp_score = self.score2
+                    temp_score = player2_points
 
                 if temp_score == 0:
                     output = output + "Love"
@@ -57,12 +51,25 @@ class TennisGame:
 
         return output
 
-    def _game_even(self):
-        return self.score1 == self.score2
-
-    def _get_even_score(self):
-        if self.score1 < 4:
-            call = POINT_CALLS[self.score1]
+    def _get_even_score(self, points):
+        if points < 4:
+            call = POINT_CALLS[points]
             return f"{call}-All"
         else:
             return "Deuce"
+
+    def _get_score_over_4_points(self, player1_points, player2_points):
+        player1_lead = player1_points - player2_points
+
+        if player1_lead == 1:
+            output = "Advantage player1"
+        elif player1_lead == -1:
+            output = "Advantage player2"
+        elif player1_lead >= 2:
+            output = "Win for player1"
+        else:
+            output = "Win for player2"
+        return output
+
+    def _get_points(self, player):
+        return self._points[player]
