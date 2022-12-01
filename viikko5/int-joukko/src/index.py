@@ -9,6 +9,9 @@ def main():
     joukko.lisaa(2)
     joukko.lisaa(3)
     joukko.lisaa(2)
+    joukko.lisaa(7)
+    joukko.lisaa(9)
+    joukko.poista(1)
 
     print(joukko.to_int_list())
 
