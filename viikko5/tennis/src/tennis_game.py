@@ -59,17 +59,16 @@ class TennisGame:
             return "Deuce"
 
     def _get_score_over_4_points(self, player1_points, player2_points):
-        player1_lead = player1_points - player2_points
+        leading_player = self._player_with_most_points()
+        point_difference = abs(player1_points - player2_points)
 
-        if player1_lead == 1:
-            output = "Advantage player1"
-        elif player1_lead == -1:
-            output = "Advantage player2"
-        elif player1_lead >= 2:
-            output = "Win for player1"
-        else:
-            output = "Win for player2"
-        return output
+        if point_difference == 1:
+            return f"Advantage {leading_player}"
+        elif point_difference >= 2:
+            return f"Win for {leading_player}"
 
     def _get_points(self, player):
         return self._points[player]
+
+    def _player_with_most_points(self):
+        return max(self._points, key=self._points.get)
