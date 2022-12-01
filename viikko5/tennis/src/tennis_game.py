@@ -32,23 +32,9 @@ class TennisGame:
             )
 
         else:
-            output = ""
-            for i in range(1, 3):
-                if i == 1:
-                    temp_score = player1_points
-                else:
-                    output = output + "-"
-                    temp_score = player2_points
-
-                if temp_score == 0:
-                    output = output + "Love"
-                elif temp_score == 1:
-                    output = output + "Fifteen"
-                elif temp_score == 2:
-                    output = output + "Thirty"
-                elif temp_score == 3:
-                    output = output + "Forty"
-
+            output = self._get_score_under_4_points(
+                player1_points, player2_points
+            )
         return output
 
     def _get_even_score(self, points):
@@ -66,6 +52,11 @@ class TennisGame:
             return f"Advantage {leading_player}"
         elif point_difference >= 2:
             return f"Win for {leading_player}"
+
+    def _get_score_under_4_points(self, player1_points, player2_points):
+        player1_score = POINT_CALLS[player1_points]
+        player2_score = POINT_CALLS[player2_points]
+        return f"{player1_score}-{player2_score}"
 
     def _get_points(self, player):
         return self._points[player]
