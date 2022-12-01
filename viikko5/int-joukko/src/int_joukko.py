@@ -37,12 +37,7 @@ class IntJoukko:
         return self.alkioiden_lkm
 
     def to_int_list(self):
-        taulu = [0] * self.alkioiden_lkm
-
-        for i in range(0, len(taulu)):
-            taulu[i] = self.taulukko[i]
-
-        return taulu
+        return [luku for luku in self.taulukko if luku != 0]
 
     def yhdiste(a, b):
         yhdiste = IntJoukko()
@@ -64,4 +59,4 @@ class IntJoukko:
     def __str__(self):
         if self.alkioiden_lkm == 0:
             return "{}"
-        return f"{set([luku for luku in self.taulukko if luku != 0])}"
+        return f"{set(self.to_int_list())}"
