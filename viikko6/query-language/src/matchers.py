@@ -27,3 +27,8 @@ class HasAtLeast:
         player_value = getattr(player, self._attr)
 
         return player_value >= self._value
+
+
+class All:
+    def test(self, player):
+        return True
