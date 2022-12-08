@@ -1,6 +1,7 @@
 from statistics import Statistics
 from player_reader import PlayerReader
-from matchers import And, HasAtLeast, PlaysIn, All
+from matchers import And, HasAtLeast, PlaysIn, All, Not
+
 
 def main():
     url = "https://studies.cs.helsinki.fi/nhlstats/2021-22/players.txt"
@@ -17,7 +18,12 @@ def main():
         All()
     )
 
-    for player in stats.matches(matcher_all):
+    matcher_not = And(
+        Not(HasAtLeast(1, "goals")),
+        PlaysIn("NYR")
+    )
+
+    for player in stats.matches(matcher_not):
         print(player)
 
 
