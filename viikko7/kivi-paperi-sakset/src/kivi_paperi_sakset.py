@@ -14,9 +14,9 @@ class KiviPaperiSakset:
             if not self._onko_ok_siirrot(ekan_siirto, tokan_siirto):
                 break
             self._tuomari.kirjaa_siirto(ekan_siirto, tokan_siirto)
-            self._io.write(self._tuomari)
+            self._io.write(self._tuomari.ilmoita_tilanne())
         self._io.write("Kiitos!")
-        self._io.write(self._tuomari)
+        self._io.write(self._tuomari.ilmoita_tilanne())
 
     def _ensimmaisen_siirto(self):
         return self._io.read("Ensimmäisen pelaajan siirto: ")
