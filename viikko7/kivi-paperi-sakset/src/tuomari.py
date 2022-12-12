@@ -34,3 +34,6 @@ class Tuomari:
             return True
 
         return False
+
+
+default_tuomari = Tuomari()
