@@ -1,3 +1,10 @@
+VOITTAVAT_SIIRROT = {
+    "k": "s",
+    "s": "p",
+    "p": "k",
+}
+
+
 # Luokka pitää kirjaa ensimmäisen ja toisen pelaajan pisteistä sekä tasapelien
 # määrästä.
 class Tuomari:
@@ -15,25 +22,18 @@ class Tuomari:
             self.tokan_pisteet = self.tokan_pisteet + 1
 
     def ilmoita_tilanne(self):
-        return f"Pelitilanne: {self.ekan_pisteet} - {self.tokan_pisteet}\nTasapelit: {self.tasapelit}"
+        return (
+            f"Pelitilanne: {self.ekan_pisteet} - {self.tokan_pisteet}"
+            f"\nTasapelit: {self.tasapelit}"
+        )
 
     # sisäinen metodi, jolla tarkastetaan tuliko tasapeli
     def _tasapeli(self, eka, toka):
-        if eka == toka:
-            return True
-
-        return False
+        return eka == toka
 
     # sisäinen metodi joka tarkastaa voittaako eka pelaaja tokan
     def _eka_voittaa(self, eka, toka):
-        if eka == "k" and toka == "s":
-            return True
-        elif eka == "s" and toka == "p":
-            return True
-        elif eka == "p" and toka == "k":
-            return True
-
-        return False
+        return VOITTAVAT_SIIRROT[eka] == toka
 
 
 default_tuomari = Tuomari()
