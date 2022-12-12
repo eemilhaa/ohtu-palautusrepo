@@ -49,3 +49,6 @@ class TekoalyParannettu:
 
         # Tehokkaampiakin tapoja löytyy, mutta niistä lisää
         # Johdatus Tekoälyyn kurssilla!
+
+
+default_parannettu_tekoaly = TekoalyParannettu(10)
