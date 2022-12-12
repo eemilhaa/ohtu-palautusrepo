@@ -1,4 +1,4 @@
-from luo_peli import luo_peli
+from luo_peli import luo_peli, PELITYYPIT
 
 
 def main():
@@ -12,7 +12,7 @@ def main():
         )
 
         vastaus = input()
-        if vastaus not in ["a", "b", "c"]:
+        if vastaus not in PELITYYPIT.keys():
             break
         print(
             "Peli loppuu kun pelaaja antaa virheellisen siirron eli jonkun"
