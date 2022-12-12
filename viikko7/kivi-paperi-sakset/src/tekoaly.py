@@ -16,3 +16,6 @@ class Tekoaly:
     def aseta_siirto(self, siirto):
         # ei tehdä mitään
         pass
+
+
+default_tekoaly = Tekoaly()
