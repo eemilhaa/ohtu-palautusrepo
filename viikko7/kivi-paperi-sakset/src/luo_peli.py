@@ -1,12 +1,13 @@
 from kps_pelaaja_vs_pelaaja import KPSPelaajaVsPelaaja
 from kps_tekoaly import KPSTekoaly
-from kps_parempi_tekoaly import KPSParempiTekoaly
+from tekoaly import default_tekoaly
+from tekoaly_parannettu import default_parannettu_tekoaly
 
 
 PELITYYPIT = {
     "a": KPSPelaajaVsPelaaja(),
-    "b": KPSTekoaly(),
-    "c": KPSParempiTekoaly(),
+    "b": KPSTekoaly(default_tekoaly),
+    "c": KPSTekoaly(default_parannettu_tekoaly),
 }
 
 
