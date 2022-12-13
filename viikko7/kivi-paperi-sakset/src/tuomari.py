@@ -27,6 +27,9 @@ class Tuomari:
             f"\nTasapelit: {self.tasapelit}"
         )
 
+    def nollaa(self):
+        self.__init__()
+
     # sisäinen metodi, jolla tarkastetaan tuliko tasapeli
     def _tasapeli(self, eka, toka):
         return eka == toka
