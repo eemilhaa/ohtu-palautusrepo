@@ -2,6 +2,9 @@ from tuomari import default_tuomari
 from console_io import default_console_io
 
 
+SALLITUT_SIIRROT = ("k", "s", "p")
+
+
 class KiviPaperiSakset:
     def __init__(self, tuomari=default_tuomari, io=default_console_io):
         self._tuomari = tuomari
@@ -27,7 +30,7 @@ class KiviPaperiSakset:
 
     def _onko_ok_siirrot(self, *siirrot):
         for siirto in siirrot:
-            if siirto == "k" or siirto == "p" or siirto == "s":
+            if siirto in SALLITUT_SIIRROT:
                 return True
             return False
 

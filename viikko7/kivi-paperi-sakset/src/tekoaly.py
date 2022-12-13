@@ -1,21 +1,17 @@
+from itertools import cycle
+from kivi_paperi_sakset import SALLITUT_SIIRROT
+
+
 class Tekoaly:
-    def __init__(self):
-        self._siirto = 0
+    def __init__(self, siirrot):
+        self._siirrot = cycle(siirrot)
 
     def anna_siirto(self):
-        self._siirto = self._siirto + 1
-        self._siirto = self._siirto % 3
-
-        if self._siirto == 0:
-            return "k"
-        elif self._siirto == 1:
-            return "p"
-        else:
-            return "s"
+        return next(self._siirrot)
 
     def aseta_siirto(self, siirto):
         # ei tehdä mitään
         pass
 
 
-default_tekoaly = Tekoaly()
+default_tekoaly = Tekoaly(SALLITUT_SIIRROT)
