@@ -15,11 +15,11 @@ class Tuomari:
 
     def kirjaa_siirto(self, ekan_siirto, tokan_siirto):
         if self._tasapeli(ekan_siirto, tokan_siirto):
-            self.tasapelit = self.tasapelit + 1
+            self.tasapelit += 1
         elif self._eka_voittaa(ekan_siirto, tokan_siirto):
-            self.ekan_pisteet = self.ekan_pisteet + 1
+            self.ekan_pisteet += 1
         else:
-            self.tokan_pisteet = self.tokan_pisteet + 1
+            self.tokan_pisteet += 1
 
     def ilmoita_tilanne(self):
         return (
