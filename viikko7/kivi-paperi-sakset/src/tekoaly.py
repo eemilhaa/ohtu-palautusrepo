@@ -3,7 +3,7 @@ from kivi_paperi_sakset import SALLITUT_SIIRROT
 
 
 class Tekoaly:
-    def __init__(self, siirrot):
+    def __init__(self, siirrot=SALLITUT_SIIRROT):
         self._siirrot = cycle(siirrot)
 
     def anna_siirto(self):
@@ -13,5 +13,9 @@ class Tekoaly:
         # ei tehdä mitään
         pass
 
+    def nollaa(self):
+        # ei tehdä mitään
+        pass
 
-default_tekoaly = Tekoaly(SALLITUT_SIIRROT)
+
+default_tekoaly = Tekoaly()

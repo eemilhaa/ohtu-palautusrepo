@@ -38,3 +38,5 @@ class KiviPaperiSakset:
         self._io.write("Kiitos!")
         self._io.write(self._tuomari.ilmoita_tilanne())
         self._tuomari.nollaa()
+        if self._tekoaly:
+            self._tekoaly.nollaa()
